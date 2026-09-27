@@ -1,6 +1,15 @@
-# Default to a public-overview repository. Add any future source deliberately.
+# Allow only reviewed public files. Motion, model, logs, archives and robot-side files stay out.
 *
 !/.gitignore
 !/README.md
+!/requirements.txt
+!/requirements-sim.txt
 !/docs/
 !/docs/*.md
+!/scripts/
+!/scripts/*.py
+!/tests/
+!/tests/*.py
+!/.github/
+!/.github/workflows/
+!/.github/workflows/tests.yml

@@ -1,8 +1,6 @@
 # World Humanoid Robot Games 2026 — Unitree G1
 
-A public overview of my work with **超能逸仙队** at the 2026 World Humanoid Robot Games. I served as **Team Lead / Technical Integration** for the team's Unitree G1 participation in Street Dance and Tai Chi.
-
-This is a team competition project. The results below belong to the team, and the technical description distinguishes my integration role from the broader work of teammates and upstream software authors.
+A public overview of my work with **超能逸仙队** at the 2026 World Humanoid Robot Games. I served as **Team Lead / Technical Integration** for the team's Unitree G1 participation in Street Dance and Tai Chi. This was a team effort; the results below belong to the team.
 
 ## Competition results
 
@@ -11,26 +9,48 @@ This is a team competition project. The results below belong to the team, and th
 | Street Dance | Top 16 (team-reported) |
 | Tai Chi | [11th place](https://robopodium.com/whrg-2026/wushu/taijiquan) |
 
-## Technical scope
-
-The development workflow connected motion assets, workstation-side simulation and checks, onboard deployment, and testing on the G1. The available handover materials document MuJoCo simulation, ONNX-based policy deployment, reference-motion playback, and robot-side control interfaces. These components were integrated and tested as a system for the competition; this repository does not claim that I designed or trained the underlying policy.
-
-My contribution areas were:
+## My role
 
 - Team coordination and technical integration across development and robot deployment.
 - Integration of whole-body motion workflows for the Unitree G1.
-- Real-robot testing, debugging, and deployment support.
+- Real-robot testing, debugging and deployment support.
 
-A concise description of the visible engineering workflow is in [Technical scope](docs/TECHNICAL_SCOPE.md).
+The team built on [NVIDIA NVlabs/GR00T-WholeBodyControl (GEAR-SONIC)](https://github.com/NVlabs/GR00T-WholeBodyControl). I do not claim to have designed or trained its underlying policy. See [code provenance and attribution](docs/PROVENANCE.md) and [technical scope](docs/TECHNICAL_SCOPE.md).
 
-## Code and materials
+## Selected development-machine code
 
-This repository is a **curated public overview**, not a release of the full competition stack. The supplied archive combines team work, upstream code, third-party dependencies, model files, motion assets, and experiment logs. Its provenance and release boundaries need to be checked file by file before any source can be published. Robot-side files outside that archive have not been reviewed here.
+This repository includes three reviewed team scripts for motion preparation, MuJoCo kinematic replay and ONNX policy simulation. They have been curated to remove collaborator-specific paths and to require externally supplied models and motion data. The public repository does **not** contain those assets or the robot-side implementation.
 
-No credentials, internal network settings, raw robot logs, model weights, motion trajectories, or bundled third-party code are included. There is no runnable public implementation or reproducibility claim in this version.
+| Script | Purpose |
+| --- | --- |
+| [`convert_bones_csv_to_deploy.py`](scripts/convert_bones_csv_to_deploy.py) | Resample a Bones-style CSV to four 50 Hz development-preview CSVs and metadata. Despite its historical filename, this is **not** a complete deployment-data generator. |
+| [`replay_motions.py`](scripts/replay_motions.py) | Kinematic motion preview in a user-supplied G1 MuJoCo model. |
+| [`run_policy_sim.py`](scripts/run_policy_sim.py) | MuJoCo physics check with user-supplied G1 model and ONNX encoder/decoder; `--no-policy` enables a kinematic comparison. |
 
-## Attribution and research boundaries
+### Local checks
 
-The base software is [NVlabs/GR00T-WholeBodyControl / GEAR-SONIC](https://github.com/NVlabs/GR00T-WholeBodyControl), alongside other third-party components. Its authors retain credit for the original framework and pretrained models. I claim my team leadership and integration contribution, not sole authorship of the full system or all competition assets. No upstream source or model files are copied into this repository.
+Use Python 3.11 or newer. For the converter and tests:
 
-No unpublished research code, study material, participant data, manuscript content, or results are included here.
+```bash
+python -m venv .venv
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
+python scripts/convert_bones_csv_to_deploy.py --input PATH_TO_BONES_CSV_DIR --output PATH_TO_PREVIEW_DIR --fps-source 120
+```
+
+For simulation, additionally install `requirements-sim.txt` and supply a G1 MuJoCo XML, motion CSV directory and (for policy mode) the ONNX models **obtained separately under their applicable terms**:
+
+```bash
+python -m pip install -r requirements-sim.txt
+python scripts/replay_motions.py --motion-dir PATH_TO_MOTIONS --list
+python scripts/replay_motions.py --model-xml PATH_TO_G1_XML --motion-dir PATH_TO_MOTIONS
+python scripts/run_policy_sim.py --motion-dir PATH_TO_MOTIONS --list
+python scripts/run_policy_sim.py --model-xml PATH_TO_G1_XML --motion-dir PATH_TO_MOTIONS --no-policy --headless --sim-seconds 2
+python scripts/run_policy_sim.py --model-xml PATH_TO_G1_XML --motion-dir PATH_TO_MOTIONS --encoder PATH_TO_ENCODER_ONNX --decoder PATH_TO_DECODER_ONNX --headless --sim-seconds 2
+```
+
+The converter has been checked with generated headered and headerless CSVs. Script syntax and command-line help were checked. **Full simulation and real-robot execution have not been validated from this public checkout**, because models, motion assets and the robot-side stack are intentionally absent.
+
+## Release boundary
+
+No credentials, network settings, raw robot logs, model weights, motion trajectories, bundled third-party repository, or robot-side code are published. Robot-side code may be added later after a separate review. No unpublished HRI research code, participant data, study material, manuscript figure or detailed result is included. This repository is a selected engineering record, not the full competition system or a performance benchmark.
