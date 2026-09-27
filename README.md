@@ -6,8 +6,8 @@ A public overview of my work with **超能逸仙队** at the 2026 World Humanoid
 
 | Event | Team result |
 | --- | --- |
-| Street Dance | Top 16 (team-reported) |
-| Tai Chi | [11th place](https://robopodium.com/whrg-2026/wushu/taijiquan) |
+| Street Dance | Top 16 |
+| Tai Chi | 11th place |
 
 ## My role
 
