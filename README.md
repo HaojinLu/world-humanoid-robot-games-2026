@@ -1,6 +1,6 @@
 # World Humanoid Robot Games 2026 — Unitree G1
 
-A public overview of my work with **超能逸仙队** at the 2026 World Humanoid Robot Games. I served as **Team Lead / Technical Integration** for the team's Unitree G1 participation in Street Dance and Tai Chi. This was a team effort; the results below belong to the team.
+A public overview of my work with **超能逸仙队** at the 2026 World Humanoid Robot Games. I served as **Team Lead / Technical Development** for the team's Unitree G1 participation in Street Dance and Tai Chi. This was a team effort; the results below belong to the team.
 
 ## Competition results
 
@@ -11,8 +11,8 @@ A public overview of my work with **超能逸仙队** at the 2026 World Humanoid
 
 ## My role
 
-- Team coordination and technical integration across development and robot deployment.
-- Integration of whole-body motion workflows for the Unitree G1.
+- Team leadership and technical development for the Unitree G1 competition tasks.
+- Whole-body motion preparation and deployment work for the Unitree G1.
 - Real-robot testing, debugging and deployment support.
 
 The team built on [NVIDIA NVlabs/GR00T-WholeBodyControl (GEAR-SONIC)](https://github.com/NVlabs/GR00T-WholeBodyControl). I do not claim to have designed or trained its underlying policy. See [code provenance and attribution](docs/PROVENANCE.md) and [technical scope](docs/TECHNICAL_SCOPE.md).
