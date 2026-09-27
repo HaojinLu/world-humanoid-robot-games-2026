@@ -6,6 +6,6 @@ The competition workflow connected motion preparation, development-machine check
 2. `replay_motions.py` previews joint trajectories kinematically in a user-supplied G1 MuJoCo model.
 3. `run_policy_sim.py` runs an ONNX encoder/decoder policy with user-supplied model and motion assets in MuJoCo, or supports kinematic comparison without the policy.
 
-The source archive also contains model files, motion trajectories, third-party code, logs and other scripts. Those are excluded from this release. The separate on-robot source has not been provided for comparison or publication. None of the included scripts alone can reproduce the competition system, and no benchmark, reliability or safety result is claimed.
+The full competition workflow also used model files, motion data, and robot-side software. This repository contains the three development-machine scripts listed above.
 
-As Team Lead / Technical Development for 超能逸仙队, Haojin Lu led the team and contributed to G1 technical work, motion deployment, real-robot testing and debugging. This role does not imply individual authorship of all team code or the NVIDIA base framework. See [provenance and attribution](PROVENANCE.md).
+As Team Lead / Technical Development for 超能逸仙队, Haojin Lu led the team and contributed to G1 technical work, motion deployment, real-robot testing and debugging. See [provenance and attribution](PROVENANCE.md).
