@@ -31,6 +31,6 @@ No credentials, internal network settings, raw robot logs, model weights, motion
 
 ## Attribution and research boundaries
 
-The system uses existing whole-body-control software and other third-party components. I claim my team leadership and integration contribution, not sole authorship of the full system, pretrained models, or all competition assets.
+The base software is [NVlabs/GR00T-WholeBodyControl / GEAR-SONIC](https://github.com/NVlabs/GR00T-WholeBodyControl), alongside other third-party components. Its authors retain credit for the original framework and pretrained models. I claim my team leadership and integration contribution, not sole authorship of the full system or all competition assets. No upstream source or model files are copied into this repository.
 
 No unpublished research code, study material, participant data, manuscript content, or results are included here.
