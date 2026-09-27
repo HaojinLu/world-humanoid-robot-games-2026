@@ -1,0 +1,6 @@
+# Default to a public-overview repository. Add any future source deliberately.
+*
+!/.gitignore
+!/README.md
+!/docs/
+!/docs/*.md
